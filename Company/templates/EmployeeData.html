@@ -1,0 +1,69 @@
+{% extends "Header.html" %} {% block content %}
+
+
+
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Employee
+                    </li>
+                </ol>
+            </div>
+            <div class="col-md-7 col-4 align-self-center">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Employee Form</h3>
+                    <hr>
+
+                    <form action = "/employee/create/" class="form-group" method = "POST">
+                        {% csrf_token %}
+                        {{form.as_p }}
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </form>
+                </div>
+            </div>
+            <br>    
+    		<div class="card" >
+                <div class="card-body">
+                    <h2>Employee List</h2>
+                    <hr> 
+        			<div style="width: 100%; overflow-x: auto;">
+                		<table id="enrollTable" width="100%"
+                    class="table color-bordered-table danger-bordered-table table-hover table-fixed">
+                    		<thead style="background-color: #">
+                        		<tr id='headerTable'>
+                       	     		<th>S.No</th>
+                                    <th>EmpolyeeName</th>
+                            		<th>Department</th>
+                            		
+                        		</tr>	
+                    		</thead>
+                    		<tbody>
+                    			{% for i in employee_list %}
+                        		<tr>
+                        			<td>{{forloop.counter}}</td>
+                        			<td>{{i.EmployeeName}}</td>
+                        			<td>{{i.Department}}</td>
+                        		</tr>
+                        		{% endfor %}
+                        
+                    		</tbody>
+               			</table>
+            		</div>
+                </div>    
+      		</div>
+        </div>
+	</div>
+</div>
+
+
+{% endblock %}
